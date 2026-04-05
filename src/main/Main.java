@@ -1,20 +1,21 @@
 package main;
-import java.util.Scanner;
-
 import DB.DBconnection;
+import exception.InvalidLoginException;
 import factory.UserFactory;
+import java.util.Scanner;
 import models.User;
-// import services.InvalidLoginException;
 import services.Start;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
+        System.out.println();
         System.out.println("===================WELCOME====================");
         System.out.println("Enter as:");
         System.out.println("1.Student");
         System.out.println("2.Professor");
         System.out.println("3.Administrator");
+        System.out.println("4.Teaching Assistant");
         System.out.print("Enter your role: ");
         int role=sc.nextInt();
         System.out.println("----------------------------------------------");
@@ -32,7 +33,7 @@ public class Main {
             case 1:
                 try {
                     st.login();
-                } catch (Exception e) {
+                } catch (InvalidLoginException e) {
                     System.out.println(e.getMessage());
                     return;
                 }
@@ -45,6 +46,7 @@ public class Main {
                 st.signup();
                 break;
         }
+        
         String email=st.email;
         System.out.println("----------------------------------------------");
         System.out.println();

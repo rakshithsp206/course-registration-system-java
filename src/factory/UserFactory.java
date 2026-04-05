@@ -1,8 +1,5 @@
 package factory;
-import models.Administrator;
-import models.Professor;
-import models.Student;
-import models.User;
+import models.*;
 public class UserFactory {
     private User user;
     public User getUser(int role,String email){
@@ -15,6 +12,12 @@ public class UserFactory {
                 break;
             case 3:
                 user=new Administrator(email);
+                break;
+            case 4:
+                user=new TeachingAssistant(email);
+                break;
+            default:
+                System.out.println("Invalid Role");
                 break;
         }
         return user;

@@ -71,7 +71,7 @@ public class Student extends User
 
     }
 
-    private void ViewCourses(){
+    protected void ViewCourses(){
         System.out.println();
         try {
             String query="Select * from courses where sem=?";
@@ -87,7 +87,7 @@ public class Student extends User
         System.out.println();
     }
 
-    private void Register(){
+    protected void Register(){
         System.out.println();
         try {
             System.out.print("Enter Course ID to Register: ");
@@ -108,7 +108,7 @@ public class Student extends User
         System.out.println();
     }
 
-    private void ViewSchedule(){
+    protected void ViewSchedule(){
         System.out.println();
         try {
             String query="SELECT courseid FROM student WHERE email=? AND sem=?";
@@ -145,7 +145,7 @@ public class Student extends User
         System.out.println();
     }
 
-    private void DropCourse(){
+    protected void DropCourse(){
         System.out.println();
         try {
             System.out.print("Enter Course ID to be DROPPED: ");
@@ -166,7 +166,7 @@ public class Student extends User
         System.out.println();
     }
 
-    private void Complaint(){
+    protected void Complaint(){
         System.out.println();
         try {
             System.out.println("Please type your complaint...");
@@ -183,7 +183,7 @@ public class Student extends User
         System.out.println();
     }
 
-    private void TrackProgress(){
+    protected void TrackProgress(){
         System.out.println();
         while (true) { 
             System.out.println("----------------------------------------------");
@@ -216,7 +216,7 @@ public class Student extends User
         }
     }
 
-    private void giveFeedback(){
+    protected void giveFeedback(){
         System.out.println();
         System.out.print("Enter Course Code: ");
         String code=sc.next();

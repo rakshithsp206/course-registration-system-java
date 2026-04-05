@@ -1,13 +1,9 @@
 package services;
 import DB.DBconnection;
+import exception.*;
 import java.sql.*;
 import java.util.Scanner;
 
-class InvalidLoginException extends Exception{
-    public InvalidLoginException(String message) {
-        super(message);
-    }
-}
 
 public class Start {
     Scanner sc=new Scanner(System.in);
@@ -34,7 +30,10 @@ public class Start {
                 throw new InvalidLoginException("INVALID CREDENTIALS!!!");
             }
         } 
-        catch (Exception e) {
+        catch (InvalidLoginException e) {
+            throw e;
+        }
+        catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
