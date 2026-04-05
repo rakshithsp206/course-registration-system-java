@@ -25,6 +25,7 @@ public class Student extends User
             System.out.println("4.Track Academic Progress");
             System.out.println("5.Drop Courses");
             System.out.println("6.Submit Complaints");
+            System.out.println("7.Give Feedback");
             System.out.println("0.Logout");
             System.out.print("Enter your Choice: ");
         
@@ -49,6 +50,9 @@ public class Student extends User
                     break;
                 case 6:
                     Complaint();
+                    break;
+                case 7:
+                    giveFeedback();
                     break;
                 case 0:
                     System.out.println("---LOGGED OUT SUCCESSFULLY---");
@@ -219,5 +223,27 @@ public class Student extends User
             }
         }
     }
+
+    private void giveFeedback(){
+        System.out.println();
+        System.out.print("Enter Course Code: ");
+        String code=sc.next();
+        sc.nextLine();
+        System.out.print("Feedback: ");
+        String feedback=sc.nextLine();
+        try {
+            String query="INSERT INTO feedback VALUES(?,?)";
+            PreparedStatement ps=con.prepareStatement(query);
+            ps.setString(1, code);
+            ps.setString(2, feedback);
+
+            ps.executeUpdate();
+            System.out.println("---FEEDBACK SUCCESSFUL---");
+            System.out.println();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
 

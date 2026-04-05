@@ -14,6 +14,7 @@ public class Professor extends User{
         while (true) { 
             System.out.println("1.Manage Courses");
             System.out.println("2.View Enrolled Students");
+            System.out.println("3.View Feedback");
             System.out.println("0.Logout");
             System.out.print("Enter your choice: ");
             int choice=sc.nextInt();
@@ -28,6 +29,11 @@ public class Professor extends User{
                 case 2:
                     System.out.println();
                     viewStudents();
+                    System.out.println();
+                    break;
+                case 3:
+                    System.out.println();
+                    viewFeedback();
                     System.out.println();
                     break;
                 case 0:
@@ -177,5 +183,30 @@ public class Professor extends User{
         }
     }
 
+    private void viewFeedback(){
+        System.out.print("Enter Course Code: ");
+        String code=sc.next();
+        try {
+            String query="SELECT * FROM feedback WHERE course_code=?";
+            PreparedStatement ps=con.prepareStatement(query);
+            ps.setString(1, code);
+            ResultSet rs=ps.executeQuery();
+            ResultSetMetaData meta=rs.getMetaData();
+
+            for(int i=1;i<=2;i++){
+                System.out.printf("%-20s",meta.getColumnName(i).toUpperCase());
+            }
+            System.out.println();
+
+            while(rs.next()){
+                for(int i=1;i<=2;i++){
+                    System.out.printf("%-20s",rs.getObject(i));
+                }
+                System.out.println();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 
