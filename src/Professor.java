@@ -12,6 +12,7 @@ public class Professor extends User{
     @Override
     public void menu(){
         while (true) { 
+            System.out.println("=====================MENU=====================");
             System.out.println("1.Manage Courses");
             System.out.println("2.View Enrolled Students");
             System.out.println("3.View Feedback");
@@ -19,7 +20,8 @@ public class Professor extends User{
             System.out.print("Enter your choice: ");
             int choice=sc.nextInt();
             sc.nextLine();
-    
+            System.out.println("==============================================");
+
             switch(choice){
                 case 1:
                     System.out.println();
@@ -37,7 +39,8 @@ public class Professor extends User{
                     System.out.println();
                     break;
                 case 0:
-                    System.out.println("---LOGGED OUT SUCCESSFULLY---");
+                    System.out.println();
+                    System.out.println("===========LOGGED OUT SUCCESSFULLY============");
                     return;
                 default:
                     System.out.println("Invalid Choice");
@@ -48,6 +51,7 @@ public class Professor extends User{
 
     private void ManageCourses(){
         while (true) { 
+            System.out.println("----------------------------------------------");
             System.out.println("1.View Courses");
             System.out.println("2.Update Timings");
             System.out.println("3.Update Credits");
@@ -56,6 +60,7 @@ public class Professor extends User{
             System.out.print("Enter your Choice: ");
             int choice=sc.nextInt();
             sc.nextLine();
+            System.out.println("----------------------------------------------");
             switch(choice){
                 case 1:
                     System.out.println();
@@ -80,6 +85,9 @@ public class Professor extends User{
                 case 0:
                     System.out.println("Returning to Main Menu...");
                     return;
+                default:
+                    System.out.println("Invalid Choice");
+                    break;
             }
         }
     }
@@ -93,19 +101,7 @@ public class Professor extends User{
             ps.setString(1, name);
             ResultSet rs=ps.executeQuery();
 
-            ResultSetMetaData meta=rs.getMetaData();
-
-            for(int i=1;i<=7;i++){
-                System.out.printf("%-15s",meta.getColumnName(i).toUpperCase());
-            }
-            System.out.println();
-
-            while(rs.next()){
-                for(int i=1;i<=7;i++){
-                    System.out.printf("%-15s",rs.getObject(i));
-                }
-                System.out.println();
-            }
+            TablePrinter.printResultSet(rs);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -191,19 +187,7 @@ public class Professor extends User{
             PreparedStatement ps=con.prepareStatement(query);
             ps.setString(1, code);
             ResultSet rs=ps.executeQuery();
-            ResultSetMetaData meta=rs.getMetaData();
-
-            for(int i=1;i<=2;i++){
-                System.out.printf("%-20s",meta.getColumnName(i).toUpperCase());
-            }
-            System.out.println();
-
-            while(rs.next()){
-                for(int i=1;i<=2;i++){
-                    System.out.printf("%-20s",rs.getObject(i));
-                }
-                System.out.println();
-            }
+            TablePrinter.printResultSet(rs);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

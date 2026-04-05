@@ -12,15 +12,16 @@ public class Administrator extends User{
 
     public void menu(){
         while (true) { 
-            System.out.println("1. Manage Course Catalog");
-            System.out.println("2. Manage Student Records");
-            System.out.println("3. Assign Professors to Courses:");
-            System.out.println("4. Handle Complaints:");
+            System.out.println("=====================MENU=====================");
+            System.out.println("1.Manage Course Catalog");
+            System.out.println("2.Manage Student Records");
+            System.out.println("3.Assign Professors to Courses");
+            System.out.println("4.Handle Complaints");
             System.out.println("0.Logout");
             System.out.print("Enter your choice: ");
             int choice=sc.nextInt();
             sc.nextLine();
-
+            System.out.println("==============================================");
             switch (choice) {
                 case 1:
                     System.out.println();
@@ -43,7 +44,8 @@ public class Administrator extends User{
                     System.out.println();
                     break;
                 case 0:
-                    System.out.println("---LOGGED OUT SUCCESSFULLY---");
+                    System.out.println();
+                    System.out.println("===========LOGGED OUT SUCCESSFULLY============");
                     return;
                 default:
                     System.out.println("Invalid Choice");
@@ -54,12 +56,15 @@ public class Administrator extends User{
 
     private void ManageCourse(){
         while (true) { 
+            System.out.println("----------------------------------------------");
             System.out.println("1.Add Course");
             System.out.println("2.Delete Course");
             System.out.println("3.View Courses");
             System.out.println("0.Go Back");
             System.out.print("Enter your choice: ");
             int choice=sc.nextInt();
+            sc.nextLine();
+            System.out.println("----------------------------------------------");
             switch(choice){
                 case 1:
                     System.out.println();
@@ -79,6 +84,9 @@ public class Administrator extends User{
                 case 0:
                     System.out.println("Returning to Main Menu...");
                     return;
+                default:
+                    System.out.println("Invalid Choice");
+                    break;
             }
         }
     }
@@ -88,19 +96,7 @@ public class Administrator extends User{
             Statement stmt=con.createStatement();
             String query="Select * from courses";
             ResultSet rs=stmt.executeQuery(query);
-            ResultSetMetaData meta=rs.getMetaData();
-
-            for(int i=1;i<=8;i++){
-                System.out.printf("%-15s",meta.getColumnName(i).toUpperCase());
-            }
-            System.out.println();
-
-            while(rs.next()){
-                for(int i=1;i<=8;i++){
-                    System.out.printf("%-15s",rs.getObject(i));
-                }
-                System.out.println();
-            }
+            TablePrinter.printResultSet(rs);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -181,13 +177,14 @@ public class Administrator extends User{
 
     private void HandleComplaint(){
         while (true) { 
+            System.out.println("----------------------------------------------");
             System.out.println("1.View Complaints");
             System.out.println("2.Update Complaint Status");
             System.out.println("0.Go Back");
             System.out.print("Enter your choice: ");
             int choice=sc.nextInt();
             sc.nextLine();
-    
+            System.out.println("----------------------------------------------");
             switch(choice){
                 case 1:
                     System.out.println();
@@ -202,6 +199,9 @@ public class Administrator extends User{
                 case 0:
                     System.out.println("Returning to Main Menu...");
                     return;
+                default:
+                    System.out.println("Invalid Choice");
+                    break;
             }
         }
     }
@@ -211,19 +211,7 @@ public class Administrator extends User{
             Statement stmt=con.createStatement();
             String query="Select id,description,status from complaints";
             ResultSet rs=stmt.executeQuery(query);
-            ResultSetMetaData meta=rs.getMetaData();
-
-            for(int i=1;i<=3;i++){
-                System.out.printf("%-15s",meta.getColumnName(i).toUpperCase());
-            }
-            System.out.println();
-
-            while(rs.next()){
-                for(int i=1;i<=3;i++){
-                    System.out.printf("%-15s",rs.getObject(i));
-                }
-                System.out.println();
-            }
+            TablePrinter.printResultSet(rs);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

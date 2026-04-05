@@ -1,12 +1,18 @@
 import java.sql.*;
 import java.util.Scanner;
 
+class InvalidLoginException extends Exception{
+    public InvalidLoginException(String message) {
+        super(message);
+    }
+}
+
 public class Start {
     Scanner sc=new Scanner(System.in);
     private Connection con=DBconnection.getInstance().getConnection();
     String email;
 
-    public void login(){
+    public void login() throws InvalidLoginException{
         System.out.print("Enter Email-ID: ");
         email=sc.next();
         System.out.print("Enter password: ");
@@ -23,7 +29,7 @@ public class Start {
             if(rs.next())
                 System.out.println("---LOGIN SUCCESSFUL---");
             else{
-                System.out.println("---INCORRECT EMAIL ID OR PASSWORD---");
+                throw new InvalidLoginException("INVALID CREDENTIALS!!!");
             }
         } 
         catch (Exception e) {

@@ -18,7 +18,7 @@ public class Student extends User
         System.out.println();
 
         while (true) { 
-            System.out.println("----------MENU----------");
+            System.out.println("=====================MENU=====================");
             System.out.println("1.View Available Courses");
             System.out.println("2.Register for Courses");
             System.out.println("3.View Schedule");
@@ -28,9 +28,10 @@ public class Student extends User
             System.out.println("7.Give Feedback");
             System.out.println("0.Logout");
             System.out.print("Enter your Choice: ");
-        
+            
             int choice=sc.nextInt();
             sc.nextLine();
+            System.out.println("==============================================");
 
             switch(choice){
                 case 1:
@@ -55,7 +56,8 @@ public class Student extends User
                     giveFeedback();
                     break;
                 case 0:
-                    System.out.println("---LOGGED OUT SUCCESSFULLY---");
+                    System.out.println();
+                    System.out.println("===========LOGGED OUT SUCCESSFULLY============");
                     return;
                 default:
                     System.out.println("Invalid Choice");
@@ -72,19 +74,8 @@ public class Student extends User
             PreparedStatement ps=con.prepareStatement(query);
             ps.setInt(1, Sem);
             ResultSet rs=ps.executeQuery();
-            ResultSetMetaData meta=rs.getMetaData();
-
-            for(int i=1;i<=6;i++){
-                System.out.printf("%-15s",meta.getColumnName(i).toUpperCase());
-            }
-            System.out.println();
-
-            while(rs.next()){
-                for(int i=1;i<=6;i++){
-                    System.out.printf("%-15s",rs.getObject(i));
-                }
-                System.out.println();
-            }
+            TablePrinter.printResultSet(rs);
+        
         } 
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -142,16 +133,7 @@ public class Student extends User
             }
 
             rs=ps.executeQuery();
-            System.out.printf("%-10s%-20s%-15s%-10s","CODE","PROFESSOR","TIMINGS","LOCATION");
-            System.out.println();
-            while(rs.next()){
-                String code=rs.getString(1);
-                String prof=rs.getString(2);
-                String time=rs.getString(3);
-                String location=rs.getString(4);
-                System.out.printf("%-10s%-20s%-15s%-10s",code,prof,time,location);
-                System.out.println();
-            }
+            TablePrinter.printResultSet(rs);
         } 
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -200,12 +182,15 @@ public class Student extends User
     private void TrackProgress(){
         System.out.println();
         while (true) { 
+            System.out.println("----------------------------------------------");
             System.out.println("1.SGPA");
             System.out.println("2.CGPA");
             System.out.println("0.Go Back");
             System.out.print("Enter your choice: ");
             int choice=sc.nextInt();
-    
+            sc.nextLine();
+            System.out.println("----------------------------------------------");
+
             CalculateGPA calc=new CalculateGPA(email, Sem);
             switch(choice){
                 case 1:
@@ -220,6 +205,9 @@ public class Student extends User
                     System.out.println("Returning to Main Menu...");
                     System.out.println();
                     return;
+                default:
+                    System.out.println("Invalid Choice");
+                    break;
             }
         }
     }
