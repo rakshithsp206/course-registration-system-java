@@ -1,3 +1,5 @@
+package services;
+import DB.DBconnection;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -10,7 +12,7 @@ class InvalidLoginException extends Exception{
 public class Start {
     Scanner sc=new Scanner(System.in);
     private Connection con=DBconnection.getInstance().getConnection();
-    String email;
+    public String email;
 
     public void login() throws InvalidLoginException{
         System.out.print("Enter Email-ID: ");

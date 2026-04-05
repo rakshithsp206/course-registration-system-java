@@ -1,5 +1,8 @@
+package models;
+import DB.DBconnection;
 import java.sql.*;
 import java.util.Scanner;
+import util.TablePrinter;
 
 public class Administrator extends User{
     Scanner sc=new Scanner(System.in);
@@ -105,9 +108,11 @@ public class Administrator extends User{
     private void addCourse(){
         System.out.print("Enter Course Code: ");
         String code=sc.next();
+        sc.nextLine();
         System.out.print("Enter Course Title: ");
         String title=sc.next();
-        System.out.println("Enter Semester: ");
+        sc.nextLine();
+        System.out.print("Enter Semester: ");
         int sem=sc.nextInt();
 
         try {

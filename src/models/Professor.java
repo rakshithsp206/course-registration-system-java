@@ -1,6 +1,9 @@
+package models;
 
+import DB.DBconnection;
 import java.sql.*;
 import java.util.Scanner;
+import util.TablePrinter;
 
 public class Professor extends User{
     Scanner sc=new Scanner(System.in);

@@ -1,5 +1,9 @@
+package models;
+import DB.DBconnection;
 import java.sql.*;
 import java.util.Scanner;
+import services.CalculateGPA;
+import util.TablePrinter;
 public class Student extends User 
 {   
     int Sem;

@@ -1,4 +1,11 @@
+package main;
 import java.util.Scanner;
+
+import DB.DBconnection;
+import factory.UserFactory;
+import models.User;
+// import services.InvalidLoginException;
+import services.Start;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,7 +32,7 @@ public class Main {
             case 1:
                 try {
                     st.login();
-                } catch (InvalidLoginException e) {
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                     return;
                 }

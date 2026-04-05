@@ -1,4 +1,7 @@
+package services;
 import java.sql.*;
+
+import DB.DBconnection;
 
 class SGPA{
     String email;

@@ -1,3 +1,8 @@
+package factory;
+import models.Administrator;
+import models.Professor;
+import models.Student;
+import models.User;
 public class UserFactory {
     private User user;
     public User getUser(int role,String email){
