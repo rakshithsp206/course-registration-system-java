@@ -120,7 +120,7 @@ public class Student extends User
             ResultSetMetaData meta=rs.getMetaData();
             int cols=meta.getColumnCount();
             
-            StringBuilder qry=new StringBuilder("SELECT code,proffessor,timings,location FROM courses WHERE code IN(");
+            StringBuilder qry=new StringBuilder("SELECT code,professor,timings,location FROM courses WHERE code IN(");
 
             for(int i=0;i<cols;i++){
                 qry.append("?");
@@ -200,7 +200,7 @@ public class Student extends User
                 case 1:
                     System.out.print("Enter Semester for SGPA: ");
                     int sem=sc.nextInt();
-                    System.out.println("SGPA for Semester "+sem+"is"+calc.calculateSGPA(sem));
+                    System.out.println("SGPA for Semester "+sem+" is "+calc.calculateSGPA(sem));
                     break;
                 case 2:
                     System.out.println("Your CGPA is "+calc.calculateCGPA());
